@@ -28,12 +28,17 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         //Tomo los datos de los joysticks
+        /*
         joyV = Input.GetAxis("Vertical");
         joyH = Input.GetAxis("Horizontal");
+        */
+        joyH = 0f; 
+        joyV = 0f;
 
-        rotation = Input.GetAxis("HorizontalJ2");
-        
-        print(rotation); //mando a consola el valor para vigilarlo
+        //rotation = Input.GetAxis("HorizontalJ2");
+        rotation = 0f;
+
+        //print(rotation); //mando a consola el valor para vigilarlo
 
         //Si bajo, subo la velocidad, si subo la bajo
         if(joyV > 0)
