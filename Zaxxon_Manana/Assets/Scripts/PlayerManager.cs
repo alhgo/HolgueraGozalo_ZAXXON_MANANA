@@ -20,6 +20,14 @@ public class PlayerManager : MonoBehaviour
     //Variable para el stick derecho
     float rotation;
 
+    //Variables para la restriccion de movimiento
+    float limiteVertUP = 10f;
+    float limiteVertDOWN = 1f;
+    float posY;
+    float posX;
+    [SerializeField] bool inlimitV = true;
+    bool inlimitH;
+
     private void Awake()
     {
         inputActions = new InputActions();
@@ -47,11 +55,16 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Tomo los datos de los joysticks
-        //print(lStick);
+        MoverNave();
+        CheckLimits();
 
-        //joyV = lStick.y;
-        //joyH = lStick.x;
+    }
+
+    void MoverNave()
+    {
+        //Tomo mi posición en todo momento
+        posX = transform.position.x;
+        posY = transform.position.y;
 
         print(joyH + " - " + joyV);
         //rotation = Input.GetAxis("HorizontalJ2");
@@ -61,11 +74,11 @@ public class PlayerManager : MonoBehaviour
 
         //Si bajo, subo la velocidad, si subo la bajo
         float multiplySpeed;
-        if(joyV > 0)
+        if (joyV > 0)
         {
             multiplySpeed = joyV * 0.5f;
         }
-        else if(joyV < 0)
+        else if (joyV < 0)
         {
             multiplySpeed = joyV * 2f;
         }
@@ -74,13 +87,33 @@ public class PlayerManager : MonoBehaviour
             multiplySpeed = 0f;
         }
 
+        
+
+
+
+        /*
+        if((posY <= limiteVertUP || joyV < 0) && (posY > limiteVertDOWN || joyV > 0))
+        {
+            inlimitV = true;
+        }
+        else
+        {
+            inlimitV = false;
+        }
+        */
+
 
         //MOVIMIETO HORIZONTAL Y VERTICAL, con respecto al mundo
-        transform.Translate(Vector3.up * speedDespl * multiplySpeed * Time.deltaTime, Space.World);
+        if (inlimitV == true)
+        {
+            transform.Translate(Vector3.up * speedDespl * joyV * Time.deltaTime, Space.World);
+
+        }
         transform.Translate(Vector3.right * speedDespl * joyH * Time.deltaTime, Space.World);
 
+
         //Hago que rote la nave cuando me desplazo 
-        transform.eulerAngles = new Vector3(joyV * -30f, 0f , joyH * -45f);
+        transform.eulerAngles = new Vector3(joyV * -30f, 0f, joyH * -45f);
 
         //Este código sería para rotarlo con el stick derecho, pero no es compatible con el anterior
         //transform.Rotate(0f,0f,rotation);
@@ -95,7 +128,23 @@ public class PlayerManager : MonoBehaviour
 
 
         //transform.eulerAngles = new Vector3(0f, 0f, rotation * -45f);
+    }
 
+    void CheckLimits()
+    {
+        //Restricción de movimiento
+        if (posY > limiteVertUP && joyV > 0)
+        {
+            inlimitV = false;
+        }
+        else if (posY < limiteVertDOWN && joyV < 0)
+        {
+            inlimitV = false;
+        }
+        else
+        {
+            inlimitV = true;
+        }
     }
 
     void Disparar()
