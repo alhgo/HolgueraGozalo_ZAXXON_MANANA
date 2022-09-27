@@ -19,18 +19,19 @@ public class CameraMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offsetZ = 10f;
-        offsetY = 2f;
+        offsetZ = 13f;
+        offsetY = 5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetPos = nave.position;
+        Vector3 targetPos = nave.position - new Vector3(0f,-offsetY,offsetZ);
+        currentPos = transform.position;
 
-        currentPos = Vector3.SmoothDamp(currentPos, targetPos, ref
+        targetPos = Vector3.SmoothDamp(currentPos, targetPos, ref
 velocity, smoothMoveVelocity);
-        transform.Translate(currentPos * Time.deltaTime);
+        transform.position = targetPos;
 
         /*
 

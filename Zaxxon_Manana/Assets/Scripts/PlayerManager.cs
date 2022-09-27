@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+
+    InputActions inputActions;
+    
     //Variable para practicar con vectores
     //Vector3 initPos = Vector3.zero;
 
@@ -13,8 +16,20 @@ public class PlayerManager : MonoBehaviour
     //Variables que recojan el Input
     float joyV;
     float joyH;
+    Vector2 lStick;
     //Variable para el stick derecho
     float rotation;
+
+    private void Awake()
+    {
+        inputActions = new InputActions();
+
+        inputActions.Player.Move.performed += ctx => lStick = ctx.ReadValue<Vector2>() ;
+        inputActions.Player.Move.canceled += _ => lStick = Vector2.zero;
+
+        inputActions.Player.Disparo.started += _ => Disparar();
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +43,11 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         //Tomo los datos de los joysticks
-        /*
-        joyV = Input.GetAxis("Vertical");
-        joyH = Input.GetAxis("Horizontal");
-        */
-        joyH = 0f; 
-        joyV = 0f;
+        //print(lStick);
+        
+        joyV = lStick.y;
+        joyH = lStick.x;
+        
 
         //rotation = Input.GetAxis("HorizontalJ2");
         rotation = 0f;
@@ -72,4 +86,21 @@ public class PlayerManager : MonoBehaviour
         //transform.eulerAngles = new Vector3(0f, 0f, rotation * -45f);
 
     }
+
+    void Disparar()
+    {
+        print("PUUUM");
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
+
+
 }
