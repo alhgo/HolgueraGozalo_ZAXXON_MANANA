@@ -57,8 +57,11 @@ public class PlayerManager : MonoBehaviour
     {
         MoverNave();
         CheckLimits();
+       
 
     }
+
+
 
     void MoverNave()
     {
@@ -66,7 +69,7 @@ public class PlayerManager : MonoBehaviour
         posX = transform.position.x;
         posY = transform.position.y;
 
-        print(joyH + " - " + joyV);
+        //print(joyH + " - " + joyV);
         //rotation = Input.GetAxis("HorizontalJ2");
         rotation = 0f;
 
@@ -132,7 +135,7 @@ public class PlayerManager : MonoBehaviour
 
     void CheckLimits()
     {
-        //Restricción de movimiento
+        //Compruebo si estoy en el límite vertical
         if (posY > limiteVertUP && joyV > 0)
         {
             inlimitV = false;
