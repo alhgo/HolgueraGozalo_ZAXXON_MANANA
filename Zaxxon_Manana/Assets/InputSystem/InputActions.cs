@@ -41,6 +41,22 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""JH"",
+                    ""type"": ""Value"",
+                    ""id"": ""2157d0d8-543b-471f-b87d-aa5ea92546ae"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""JV"",
+                    ""type"": ""Value"",
+                    ""id"": ""3e2d622c-403a-44af-9ed1-43de887620d3"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -186,6 +202,94 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5995ff2e-3840-47da-a223-04df177ec22a"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JH"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""d5ce712c-923b-49f5-a202-880e97db7c3f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JH"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""ffbd0b59-fe0a-4c71-8a26-e677b44f3521"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JH"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""15e5baf5-ad26-40a2-affb-b3c13cb0e743"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JH"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bef1b360-15d7-4fd7-95d4-5164d54730c0"",
+                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""37f6e2d2-4a1b-4ee9-b8dd-8e1dcda496aa"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JV"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7fbd68d8-a9d4-4ff5-85d3-827f409993f5"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1dc1d1dd-5e3a-4a8a-92ff-d2f39794692e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -224,6 +328,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_Disparo = m_Player.FindAction("Disparo", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
+        m_Player_JH = m_Player.FindAction("JH", throwIfNotFound: true);
+        m_Player_JV = m_Player.FindAction("JV", throwIfNotFound: true);
         // Camara
         m_Camara = asset.FindActionMap("Camara", throwIfNotFound: true);
         m_Camara_Newaction = m_Camara.FindAction("New action", throwIfNotFound: true);
@@ -279,6 +385,8 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Disparo;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Rotate;
+    private readonly InputAction m_Player_JH;
+    private readonly InputAction m_Player_JV;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -286,6 +394,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Disparo => m_Wrapper.m_Player_Disparo;
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
+        public InputAction @JH => m_Wrapper.m_Player_JH;
+        public InputAction @JV => m_Wrapper.m_Player_JV;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -304,6 +414,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                @JH.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJH;
+                @JH.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJH;
+                @JH.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJH;
+                @JV.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJV;
+                @JV.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJV;
+                @JV.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJV;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -317,6 +433,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
+                @JH.started += instance.OnJH;
+                @JH.performed += instance.OnJH;
+                @JH.canceled += instance.OnJH;
+                @JV.started += instance.OnJV;
+                @JV.performed += instance.OnJV;
+                @JV.canceled += instance.OnJV;
             }
         }
     }
@@ -359,6 +481,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnDisparo(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnJH(InputAction.CallbackContext context);
+        void OnJV(InputAction.CallbackContext context);
     }
     public interface ICamaraActions
     {
