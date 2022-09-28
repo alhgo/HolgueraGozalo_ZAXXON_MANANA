@@ -9,12 +9,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int n = 0; n<20;n++)
-        {
-            GameObject instanciaNave = Instantiate(nave);
 
-            instanciaNave.GetComponent<PruebasPrefab>().navePar = true; 
-        }
         
     }
 

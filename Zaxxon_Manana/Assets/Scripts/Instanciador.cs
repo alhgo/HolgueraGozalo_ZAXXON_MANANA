@@ -7,6 +7,9 @@ public class Instanciador : MonoBehaviour
     [SerializeField] GameObject obst1;
     [SerializeField] Transform instPos;
 
+    //Variables de instanciación
+    float randomRangeX = 40f;
+
     float randomX;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,7 @@ public class Instanciador : MonoBehaviour
 
     void CrearObstaculo()
     {
-        randomX = Random.Range(-20f, 20f);
+        randomX = Random.Range(-randomRangeX, randomRangeX);
         Vector3 randomPos = new Vector3(randomX, instPos.position.y, instPos.position.z);
         Instantiate(obst1, randomPos, Quaternion.identity);
 

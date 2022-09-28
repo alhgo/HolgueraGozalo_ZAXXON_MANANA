@@ -4,17 +4,44 @@ using UnityEngine;
 
 public class obstacleMove : MonoBehaviour
 {
+
+    [SerializeField] GameObject nave;
+    [SerializeField] PlayerManager naveObj;
+
     float speed;
-    Vector3 despl = new Vector3(0f, 0f, -1f);
+    Vector3 despl = Vector3.back; //Vectro normalizado de valores 0,0,-1
+
+    float posZ;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 30f;
+        nave = GameObject.Find("NavePrefab");
+        naveObj = nave.GetComponent<PlayerManager>();
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Mover();
+        Destruir();
+
+    }
+
+    void Mover()
+    {
+        speed = naveObj.speed;
         transform.Translate(despl * speed * Time.deltaTime);
+    }
+
+    void Destruir()
+    {
+        posZ = transform.position.z;
+        if (posZ < -10f)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

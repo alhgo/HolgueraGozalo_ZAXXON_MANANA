@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    //Velocidad de la nave que leerán los obstáculos
+    public float speed;
 
     InputActions inputActions;
     
@@ -50,6 +52,7 @@ public class PlayerManager : MonoBehaviour
         //Velocidad de deplazamiento por defecto
         speedDespl = 10f;
 
+        speed = 50f;
     }
 
     // Update is called once per frame
