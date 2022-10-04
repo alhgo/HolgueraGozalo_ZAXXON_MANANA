@@ -18,7 +18,6 @@ public class obstacleMove : MonoBehaviour
         nave = GameObject.Find("NavePrefab");
         naveObj = nave.GetComponent<PlayerManager>();
 
-        
     }
 
     // Update is called once per frame

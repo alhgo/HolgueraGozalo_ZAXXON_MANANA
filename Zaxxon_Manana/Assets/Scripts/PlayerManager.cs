@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         inputActions.Player.JV.canceled += _ => joyV = 0f;
         inputActions.Player.JH.performed += ctx => joyH = ctx.ReadValue<float>();
         inputActions.Player.JH.canceled += _ => joyH = 0f;
-
+        
     }
     
     // Start is called before the first frame update
@@ -53,6 +53,7 @@ public class PlayerManager : MonoBehaviour
         speedDespl = 10f;
 
         speed = 50f;
+
     }
 
     // Update is called once per frame
