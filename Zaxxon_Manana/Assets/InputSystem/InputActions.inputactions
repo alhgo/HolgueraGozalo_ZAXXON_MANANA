@@ -306,6 +306,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Game",
+            "id": "596bf255-14a2-4b31-875a-a3f75f848f97",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "112184db-2bb0-4879-a8f9-38660b08af60",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1941178b-d45c-41e3-9157-3969161d2e76",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obst1: {fileID: 4977851640151007674, guid: ce22ced8eec30d649b00d4f2fa83421c, type: 3}
   instPos: {fileID: 513753006}
+  playerManager: {fileID: 1666396888}
 --- !u!4 &513753006
 Transform:
   m_ObjectHideFlags: 0
@@ -162,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513753004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 800}
+  m_LocalPosition: {x: 0, y: 0, z: 420}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -261,6 +262,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1666396888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1590093410077886814, guid: 4e03a2959f98f1442b0c117030cc2507, type: 3}
+  m_PrefabInstance: {fileID: 4693428951294827298}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75da44999bcd524e878418216f4d3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1715917002
 GameObject:
   m_ObjectHideFlags: 0

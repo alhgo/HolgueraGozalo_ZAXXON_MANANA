@@ -44,6 +44,15 @@ public class PlayerManager : MonoBehaviour
         inputActions.Player.JH.performed += ctx => joyH = ctx.ReadValue<float>();
         inputActions.Player.JH.canceled += _ => joyH = 0f;
         
+        Invoke("BackTime", 3f);
+        Time.timeScale = 0f;
+        
+        
+    }
+
+    void BackTime()
+    {
+        Time.timeScale = 1f;
     }
     
     // Start is called before the first frame update
@@ -52,7 +61,7 @@ public class PlayerManager : MonoBehaviour
         //Velocidad de deplazamiento por defecto
         speedDespl = 10f;
 
-        speed = 50f;
+        speed = 60f;
 
     }
 
