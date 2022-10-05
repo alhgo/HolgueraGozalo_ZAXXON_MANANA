@@ -15,8 +15,11 @@ public class obstacleMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //print(gameObject.tag);
         nave = GameObject.Find("NavePrefab");
         naveObj = nave.GetComponent<PlayerManager>();
+
+       
 
     }
 
@@ -24,6 +27,7 @@ public class obstacleMove : MonoBehaviour
     void Update()
     {
         Mover();
+        
         Destruir();
 
     }
@@ -31,6 +35,10 @@ public class obstacleMove : MonoBehaviour
     void Mover()
     {
         speed = naveObj.speed;
+        if(gameObject.tag == "PowerUp")
+        {
+            speed = speed * 0.2f;
+        }
         transform.Translate(despl * speed * Time.deltaTime);
     }
 

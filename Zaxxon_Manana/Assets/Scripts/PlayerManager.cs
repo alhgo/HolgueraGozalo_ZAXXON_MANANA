@@ -7,6 +7,12 @@ public class PlayerManager : MonoBehaviour
     //Velocidad de la nave que leerán los obstáculos
     public float speed;
 
+    //Booleana que me dice si estoy vivo
+    public bool alive;
+
+    //¿Ha empezado el juego?
+    public bool juegoIniciado = false;
+
     InputActions inputActions;
     
     //Variable para practicar con vectores
@@ -44,10 +50,9 @@ public class PlayerManager : MonoBehaviour
         inputActions.Player.JH.performed += ctx => joyH = ctx.ReadValue<float>();
         inputActions.Player.JH.canceled += _ => joyH = 0f;
         
-        Invoke("BackTime", 3f);
-        Time.timeScale = 0f;
-        
-        
+
+        speed = 60f;
+
     }
 
     void BackTime()
@@ -58,10 +63,15 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        alive = true;
+
         //Velocidad de deplazamiento por defecto
         speedDespl = 10f;
 
-        speed = 60f;
+        //Time.timeScale = 0;
+
+        //Corrutina para acelerar
+        StartCoroutine("Acelerar");
 
     }
 
@@ -70,8 +80,9 @@ public class PlayerManager : MonoBehaviour
     {
         MoverNave();
         CheckLimits();
-       
 
+        print(Time.fixedTime);
+ 
     }
 
 
@@ -161,6 +172,21 @@ public class PlayerManager : MonoBehaviour
         {
             inlimitV = true;
         }
+    }
+
+    IEnumerator Acelerar()
+    {
+
+        while(alive)
+        {
+            if(speed < 200f)
+                speed = speed * 1.1f;
+
+            yield return new WaitForSeconds(1f);
+
+        }
+
+
     }
 
     void Disparar()

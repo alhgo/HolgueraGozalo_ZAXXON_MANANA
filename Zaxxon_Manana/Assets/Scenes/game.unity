@@ -152,7 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48a217ae82306a42b3f0f45067bcc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obst1: {fileID: 4977851640151007674, guid: ce22ced8eec30d649b00d4f2fa83421c, type: 3}
+  obst:
+  - {fileID: 4977851640151007674, guid: ce22ced8eec30d649b00d4f2fa83421c, type: 3}
+  - {fileID: 4977851640151007674, guid: 74636fb12bc98d84487ddd37641f0654, type: 3}
+  - {fileID: 4977851640151007674, guid: 62c5bb8886d4abd418706dbba377e58f, type: 3}
+  - {fileID: 4977851640151007674, guid: 9dc8763d88a0c8946b582006d3c5b79d, type: 3}
+  - {fileID: 4895402113946809384, guid: 46a29514699113248bb1fbe71fbb714b, type: 3}
   instPos: {fileID: 513753006}
   playerManager: {fileID: 1666396888}
 --- !u!4 &513753006

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Instanciador : MonoBehaviour
 {
-    [SerializeField] GameObject obst1;
+    [SerializeField] GameObject[] obst;
     [SerializeField] Transform instPos;
 
     [SerializeField] PlayerManager playerManager;
@@ -21,8 +21,11 @@ public class Instanciador : MonoBehaviour
 
     //Variables de instanciación
     float randomRangeX = 40f;
+    float randomRangeY = 20f;
 
+    //Posiciones aleatorias de los obstáculos
     float randomX;
+    float randomY;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +43,7 @@ public class Instanciador : MonoBehaviour
     {
         distIntermedia = transform.position.z - distPrimer;
         nObstIni = Mathf.Floor( distIntermedia / distanciaEntreObstaculos);
-        print(nObstIni);
+        //print(nObstIni);
 
         float posZ = distPrimer;
         for (int n = 0; n < nObstIni; n++)
@@ -71,9 +74,25 @@ public class Instanciador : MonoBehaviour
 
     void CrearObstaculo(float posZ)
     {
+        //Elijo un elemento del array de obstaculos al azar
+        int randomObst = Random.Range(0, obst.Length);
+        //print(obst[randomObst].name);
+        //Si el obstaculo es el 2 o el 3 posición random en Y, si no Y = 0;
+        if(obst[randomObst].name == "Obstacle2" || obst[randomObst].name == "Obstacle3" )
+        {
+            randomY = Random.Range(1, randomRangeY);
+        }
+        else
+        {
+            randomY = instPos.position.y;
+        }
+        //Pongo la posición random en X
         randomX = Random.Range(-randomRangeX, randomRangeX);
-        Vector3 randomPos = new Vector3(randomX, instPos.position.y, posZ);
-        Instantiate(obst1, randomPos, Quaternion.identity);
+
+        Vector3 randomPos = new Vector3(randomX, randomY, posZ);
+        
+
+        Instantiate(obst[randomObst], randomPos, Quaternion.identity);
     }
 
     IEnumerator Iniciar()
@@ -84,7 +103,7 @@ public class Instanciador : MonoBehaviour
         {
 
             CrearObstaculo(transform.position.z);
-            print(intervalo);
+            //print(intervalo);
             yield return new WaitForSeconds(intervalo);
             
 
