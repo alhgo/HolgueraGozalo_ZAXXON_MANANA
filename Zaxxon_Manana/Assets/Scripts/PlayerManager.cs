@@ -36,6 +36,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] bool inlimitV = true;
     bool inlimitH;
 
+    //Variables para suavizado en el giro
+    public Transform target;
+    [SerializeField] float smoothTime = 0.8F;
+    private Vector3 velocity = Vector3.zero;
+
+
     private void Awake()
     {
         inputActions = new InputActions();
@@ -139,8 +145,16 @@ public class PlayerManager : MonoBehaviour
         transform.Translate(Vector3.right * speedDespl * joyH * Time.deltaTime, Space.World);
 
 
-        //Hago que rote la nave cuando me desplazo 
-        transform.eulerAngles = new Vector3(joyV * -30f, 0f, joyH * -45f);
+        //Hago que rote la nave cuando me desplazo con suavizado
+
+        // Define a target position above and behind the target transform
+        Vector3 targetRotation = transform.eulerAngles = new Vector3(joyV * -30f, 0f, joyH * -45f);
+
+        // Smoothly move the camera towards that target position
+        //transform.rotation = Vector3.SmoothDamp(transform.rota, targetPosition, ref velocity, smoothTime);
+
+        //transform.eulerAngles = new Vector3(joyV * -30f, 0f, joyH * -45f);
+        transform.eulerAngles = Vector3.SmoothDamp(transform.eulerAngles, targetRotation, ref velocity, smoothTime);
 
         //Este código sería para rotarlo con el stick derecho, pero no es compatible con el anterior
         //transform.Rotate(0f,0f,rotation);
