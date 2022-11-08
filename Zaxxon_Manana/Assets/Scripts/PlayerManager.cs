@@ -29,8 +29,9 @@ public class PlayerManager : MonoBehaviour
     float rotation;
 
     //Variables para la restriccion de movimiento
-    float limiteVertUP = 10f;
+    float limiteVertUP = 35f;
     float limiteVertDOWN = 1f;
+    float limiteHor = 50f;
     float posY;
     float posX;
     [SerializeField] bool inlimitV = true;
@@ -41,6 +42,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float smoothTime = 0.8F;
     private Vector3 velocity = Vector3.zero;
 
+    //Cuerpo del avion que desaparece
+    [SerializeField] GameObject cuerpoAvion;
+
+    //Script para actualizar el HUD
+    [SerializeField] HudController hudController;
 
     private void Awake()
     {
@@ -57,7 +63,9 @@ public class PlayerManager : MonoBehaviour
         inputActions.Player.JH.canceled += _ => joyH = 0f;
         
 
-        speed = 60f;
+        speed = 120f;
+
+        GameManager.lifes = 3;
 
     }
 
@@ -72,12 +80,14 @@ public class PlayerManager : MonoBehaviour
         alive = true;
 
         //Velocidad de deplazamiento por defecto
-        speedDespl = 10f;
+        speedDespl = 20f;
 
         //Time.timeScale = 0;
 
         //Corrutina para acelerar
         StartCoroutine("Acelerar");
+
+        
 
     }
 
@@ -87,8 +97,6 @@ public class PlayerManager : MonoBehaviour
         MoverNave();
         CheckLimits();
 
-        print(Time.fixedTime);
- 
     }
 
 
@@ -138,11 +146,10 @@ public class PlayerManager : MonoBehaviour
 
         //MOVIMIETO HORIZONTAL Y VERTICAL, con respecto al mundo
         if (inlimitV == true)
-        {
             transform.Translate(Vector3.up * speedDespl * joyV * Time.deltaTime, Space.World);
 
-        }
-        transform.Translate(Vector3.right * speedDespl * joyH * Time.deltaTime, Space.World);
+        if(inlimitH == true)
+            transform.Translate(Vector3.right * speedDespl * joyH * Time.deltaTime, Space.World);
 
 
         //Hago que rote la nave cuando me desplazo con suavizado
@@ -186,6 +193,20 @@ public class PlayerManager : MonoBehaviour
         {
             inlimitV = true;
         }
+
+        //Comprobar el límite horizontal
+        if (posX > limiteHor && joyH > 0)
+        {
+            inlimitH = false;
+        }
+        else if (posX < -limiteHor && joyH < 0)
+        {
+            inlimitH = false;
+        }
+        else
+        {
+            inlimitH = true;
+        }
     }
 
     IEnumerator Acelerar()
@@ -201,6 +222,21 @@ public class PlayerManager : MonoBehaviour
         }
 
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        GameManager.lifes--;
+
+        hudController.UpdateLifes();
+
+        if(GameManager.lifes == 0)
+        {
+            speed = 0f;
+            cuerpoAvion.SetActive(false);
+        }
+        
     }
 
     void Disparar()

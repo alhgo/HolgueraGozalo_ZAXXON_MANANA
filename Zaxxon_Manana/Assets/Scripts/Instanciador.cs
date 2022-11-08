@@ -16,7 +16,7 @@ public class Instanciador : MonoBehaviour
 
     //Variables para las columnas iniciales
     float nObstIni;
-    float distPrimer = 50f;
+    float distPrimer = 350f;
     float distIntermedia;
 
     //Variables de instanciación

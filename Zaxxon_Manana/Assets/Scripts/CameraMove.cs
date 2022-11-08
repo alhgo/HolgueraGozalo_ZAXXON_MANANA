@@ -10,7 +10,7 @@ public class CameraMove : MonoBehaviour
 
     //Variables para el movimiento suavizado
     Vector3 currentPos;
-    [SerializeField] float smoothMoveVelocity = 0.01F;
+    [SerializeField] float smoothMoveVelocity = 0.03F;
     private Vector3 velocity = Vector3.zero;
 
 
@@ -19,7 +19,7 @@ public class CameraMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offsetZ = 13f;
+        offsetZ = 18f;
         offsetY = 5f;
     }
 

@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static int lifes;
+    public static float shield;
 
-    [SerializeField] GameObject nave;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public static bool alive;
 
-        
-    }
+    public static int hs;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Config Audio
+    public static int volumeMusic;
+    public static int volumeFX;
+
+    
 }
