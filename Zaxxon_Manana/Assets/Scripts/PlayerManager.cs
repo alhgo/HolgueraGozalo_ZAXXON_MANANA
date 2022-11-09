@@ -48,6 +48,11 @@ public class PlayerManager : MonoBehaviour
     //Script para actualizar el HUD
     [SerializeField] HudController hudController;
 
+    //Invulnerabilidad
+    bool inv = false;
+    int coolDown = 0;
+    float coolDownLapse = 0.1f;
+
     private void Awake()
     {
         inputActions = new InputActions();
@@ -63,7 +68,7 @@ public class PlayerManager : MonoBehaviour
         inputActions.Player.JH.canceled += _ => joyH = 0f;
         
 
-        speed = 120f;
+        speed = 90f;
 
         GameManager.lifes = 3;
 
@@ -224,25 +229,84 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
+
+
+
     private void OnTriggerEnter(Collider other)
     {
-
-        GameManager.lifes--;
-
-        hudController.UpdateLifes();
-
-        if(GameManager.lifes == 0)
+        if(other.gameObject.tag == "obstaculo" && inv == false)
         {
-            speed = 0f;
+            inv = true;
+            Shield();
+            GameManager.lifes--;
+
+            Destroy(other.gameObject);
+
+            hudController.UpdateLifes();
+
+            if (GameManager.lifes == 0)
+            {
+                speed = 0f;
+                GameManager.alive = false;
+                hudController.ActivarGameOver();
+
+                //cuerpoAvion.SetActive(false);
+            }
+        }
+        else if(other.gameObject.tag == "PowerUp" && GameManager.lifes < 3)
+        {
+            GameManager.lifes++;
+
+            Destroy(other.gameObject);
+
+            hudController.UpdateLifes();
+        }
+
+
+
+    }
+
+    void Shield()
+    {
+        if(coolDown < 10)
+        {
             cuerpoAvion.SetActive(false);
+            Invoke("ActivarCuerpo", coolDownLapse);
+        }
+        else
+        {
+            coolDown = 0;
+            cuerpoAvion.SetActive(true);
+            inv = false;
         }
         
+
+    }
+
+    void ActivarCuerpo()
+    {
+        cuerpoAvion.SetActive(true);
+        Invoke("Shield", coolDownLapse);
+        coolDown++;
+    }
+
+    void DesactivarInv()
+    {
+        inv = false;
     }
 
     void Disparar()
     {
         print("PUUUM");
     }
+
+
+
+
 
     private void OnEnable()
     {

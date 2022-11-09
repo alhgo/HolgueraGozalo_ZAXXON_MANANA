@@ -29,7 +29,7 @@ public class Instanciador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        distanciaEntreObstaculos = 20f;
+        distanciaEntreObstaculos = 80f;
         speed = playerManager.speed;
         intervalo = distanciaEntreObstaculos / speed;
         //intervalo = 1f;

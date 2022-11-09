@@ -91,7 +91,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2109199497155607359}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -187,7 +187,7 @@ BoxCollider:
   m_GameObject: {fileID: 2203572021144606770}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -201,6 +201,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8542674528912626053}
   - component: {fileID: 4896403256661795636}
+  - component: {fileID: 2414057481636872555}
+  - component: {fileID: 2981310033848886527}
   m_Layer: 0
   m_Name: Obstacle1
   m_TagString: obstaculo
@@ -238,3 +240,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nave: {fileID: 0}
   naveObj: {fileID: 0}
+--- !u!136 &2414057481636872555
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977851640151007674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!65 &2981310033848886527
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977851640151007674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7273781, y: 2.8319206, z: 3.4098854}
+  m_Center: {x: 0, y: 17.72, z: 0}

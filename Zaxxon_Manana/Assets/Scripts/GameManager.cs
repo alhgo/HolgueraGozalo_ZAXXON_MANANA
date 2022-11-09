@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     //Config Audio
     public static int volumeMusic;
-    public static int volumeFX;
+    public static int volumeSFX;
 
     
 }

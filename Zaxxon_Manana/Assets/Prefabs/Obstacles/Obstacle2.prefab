@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 3661075937866322052}
   - component: {fileID: 8410263584970051528}
   - component: {fileID: 939080011914948062}
-  - component: {fileID: 5995560302338384565}
   m_Layer: 0
   m_Name: capsula
-  m_TagString: Untagged
+  m_TagString: obstaculo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2749667340589230631}
-  m_LocalRotation: {x: -0.6830127, y: 0.68301266, z: -0.18301281, w: 0.18301278}
+  m_LocalRotation: {x: -0.70706606, y: 0.70706606, z: 0.0075897584, w: -0.0075897584}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.36533, y: 0.71429324, z: 0.36533}
   m_Children: []
   m_Father: {fileID: 6920039943068464169}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 150, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 181.23, z: -90}
 --- !u!33 &8410263584970051528
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -82,20 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5995560302338384565
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749667340589230631}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3291836194971032724
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,10 +92,9 @@ GameObject:
   - component: {fileID: 6920039943068464169}
   - component: {fileID: 6121610349716017947}
   - component: {fileID: 5467194642708408481}
-  - component: {fileID: 5957933696154284324}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: obstaculo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,19 +163,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5957933696154284324
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3291836194971032724}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4977851640151007674
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +173,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8542674528912626053}
   - component: {fileID: 4896403256661795636}
+  - component: {fileID: 7292110850428676703}
+  - component: {fileID: 3234747499790825321}
   m_Layer: 0
   m_Name: Obstacle2
   m_TagString: obstaculo
@@ -238,3 +211,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nave: {fileID: 0}
   naveObj: {fileID: 0}
+--- !u!136 &7292110850428676703
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977851640151007674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.43
+  m_Height: 13.39
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &3234747499790825321
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977851640151007674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.1
+  m_Center: {x: 0, y: 0, z: 0}
