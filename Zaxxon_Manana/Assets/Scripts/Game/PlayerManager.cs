@@ -53,6 +53,9 @@ public class PlayerManager : MonoBehaviour
     int coolDown = 0;
     float coolDownLapse = 0.1f;
 
+    //Array con los skins
+    [SerializeField] GameObject[] skinArray;
+
     private void Awake()
     {
         inputActions = new InputActions();
@@ -70,7 +73,9 @@ public class PlayerManager : MonoBehaviour
 
         speed = 90f;
 
+        //QUITAR LUEGO
         GameManager.lifes = 3;
+        GameManager.shield = 100f;
 
     }
 
@@ -92,7 +97,15 @@ public class PlayerManager : MonoBehaviour
         //Corrutina para acelerar
         StartCoroutine("Acelerar");
 
-        
+        //Activo el skin elegido por el usuario
+        if(GameManager.skin == 0)
+        {
+            skinArray[1].SetActive(false);
+        }
+        else if(GameManager.skin == 1)
+        {
+            skinArray[0].SetActive(false);
+        }
 
     }
 
@@ -240,15 +253,26 @@ public class PlayerManager : MonoBehaviour
     {
         if(other.gameObject.tag == "obstaculo" && inv == false)
         {
+            GameManager.shield -= 20f;
+            hudController.UpdateShieldFromPlayerManager();
+
+
+
+
+
+
             inv = true;
             Shield();
-            GameManager.lifes--;
+
+            
+
+            //GameManager.lifes--;
 
             Destroy(other.gameObject);
 
             hudController.UpdateLifes();
 
-            if (GameManager.lifes == 0)
+            if (GameManager.shield == 0)
             {
                 speed = 0f;
                 GameManager.alive = false;

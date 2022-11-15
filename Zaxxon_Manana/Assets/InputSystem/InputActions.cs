@@ -331,6 +331,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""AnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""2908002d-96aa-4c54-82de-b4b90c767cd7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -342,6 +350,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5cc5f3e-42ab-4ad8-a056-4cfadfb2014d"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4b8b47d-c90c-4684-8784-345182a26260"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -363,6 +393,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
+        m_Game_AnyKey = m_Game.FindAction("AnyKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -511,11 +542,13 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Game;
     private IGameActions m_GameActionsCallbackInterface;
     private readonly InputAction m_Game_Pause;
+    private readonly InputAction m_Game_AnyKey;
     public struct GameActions
     {
         private @InputActions m_Wrapper;
         public GameActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_Game_Pause;
+        public InputAction @AnyKey => m_Wrapper.m_Game_AnyKey;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -528,6 +561,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_GameActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnPause;
+                @AnyKey.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAnyKey;
+                @AnyKey.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAnyKey;
+                @AnyKey.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAnyKey;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -535,6 +571,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @AnyKey.started += instance.OnAnyKey;
+                @AnyKey.performed += instance.OnAnyKey;
+                @AnyKey.canceled += instance.OnAnyKey;
             }
         }
     }
@@ -554,5 +593,6 @@ public class @InputActions : IInputActionCollection, IDisposable
     public interface IGameActions
     {
         void OnPause(InputAction.CallbackContext context);
+        void OnAnyKey(InputAction.CallbackContext context);
     }
 }

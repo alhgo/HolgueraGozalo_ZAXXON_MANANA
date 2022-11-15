@@ -15,5 +15,8 @@ public class GameManager : MonoBehaviour
     public static int volumeMusic;
     public static int volumeSFX;
 
+    //Skin elegido
+    public static int skin;
+
     
 }
